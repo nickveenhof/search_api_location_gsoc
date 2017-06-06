@@ -20,8 +20,8 @@ class Raw extends LocationInputPluginBase {
    * {@inheritdoc}
    */
   public function getParsedInput($input) {
-    $input['value'] = trim($input['value']);
-    return preg_match('/^[+-]?[0-9]+(?:\.[0-9]+)?,[+-]?[0-9]+(?:\.[0-9]+)?$/', $input['value']) ? $input['value'] : NULL;
+    $input = trim($input);
+    return preg_match('/^[+-]?[0-9]+(?:\.[0-9]+)?,[+-]?[0-9]+(?:\.[0-9]+)?$/', $input) ? $input : NULL;
   }
 
   /**
