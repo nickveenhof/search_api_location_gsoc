@@ -1,19 +1,28 @@
 <?php
+
 namespace Drupal\Tests\search_api_location\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\search_api_location\Plugin\search_api_location\location_input\Raw;
 
 /**
+ * Tests generation of RawTest plugin. 
+ *
  * @group search_api_location
  */
 class RawTest extends KernelTestBase {
 
   public static $modules = ['user', 'search_api', 'search_api_location'];
-
+  
+ /**
+ * Test the parsed input entered by user in raw format. 
+ */
   public function testGetParsedInput() {
-    $obj = $this->container->get('plugin.manager.search_api_location.location_input')->createInstance('raw');
-    $this->assertEquals($obj->getParsedInput("  20.548,67.945 "),"20.548,67.945");
-    $this->assertEquals($obj->getParsedInput("^20.548,67.945"),NULL);
+    $sut = $this->container
+	            ->get('plugin.manager.search_api_location.location_input')
+				->createInstance('raw');
+    $this->assertEquals($sut->getParsedInput("  20.548,67.945 "), "20.548,67.945");
+    $this->assertEquals($sut->getParsedInput("^20.548,67.945"), NULL);
   }
+  
 }
